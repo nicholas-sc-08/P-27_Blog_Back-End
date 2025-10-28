@@ -1,0 +1,29 @@
+{
+  "name": "P-27_Cabeleleiro_Back-End",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.19.0",
+  "dependencies": {
+    "@fastify/cors": "^11.1.0",
+    "@prisma/client": "^6.18.0",
+    "@types/bcrypt": "^6.0.0",
+    "@types/node": "^24.9.2",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.3",
+    "fastify": "^5.6.1",
+    "jsonwebtoken": "^9.0.2",
+    "prisma": "^6.18.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "zod": "^4.1.12"
+  }
+}
