@@ -6,7 +6,7 @@ export interface IUsuario {
     nome: string;
     email: string;
     senha: string;
-    role: ROLE.admin | ROLE.escritor | ROLE.user;
+    role: ROLE;
 }
 
 export interface ICreateUsuario {
@@ -14,7 +14,7 @@ export interface ICreateUsuario {
     nome: string;
     email: string;
     senha: string;
-    role: ROLE.admin | ROLE.escritor | ROLE.user;
+    role: ROLE;
 }
 
 export interface IUpdateUsuario {
@@ -22,4 +22,9 @@ export interface IUpdateUsuario {
     nome?: string;
     email?: string;
     senha?: string;
+}
+
+export interface GetParamId {
+
+    id_usuario: number;
 }

@@ -1,6 +1,3 @@
-export enum ROLE {
+import { ROLE as PrismaROLE } from "../generated/prisma/enums.js"
 
-    admin = "Admin",
-    escritor = "Escritor",
-    user = "User"
-};
+export type ROLE = PrismaROLE;
