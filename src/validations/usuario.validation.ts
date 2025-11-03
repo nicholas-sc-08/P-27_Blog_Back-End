@@ -3,7 +3,6 @@ import { ROLE } from "../generated/prisma/enums.js";
 
 export const usuario_schema = z.object({
 
-    id_usuario: z.number().positive().min(1),
     nome: z.string().min(1),
     email: z.email().min(1),
     senha: z.string().min(7),

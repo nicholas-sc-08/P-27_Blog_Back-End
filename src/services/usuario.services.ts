@@ -29,11 +29,11 @@ export async function buscar_usuario(id: number): Promise<IUsuario | null> {
     };
 };
 
-export async function cadastrar_usuario(data: ICreateUsuario): Promise<IUsuario | null> {
+export async function cadastrar_usuario(data: ICreateUsuario): Promise<IUsuario> {
 
     try {
 
-        const usuario: IUsuario | null = await prisma.usuario.create({data: data});
+        const usuario: IUsuario = await prisma.usuario.create({data: data});
         return usuario;
         
     } catch (erro: any) {
@@ -43,11 +43,11 @@ export async function cadastrar_usuario(data: ICreateUsuario): Promise<IUsuario 
     };
 };
 
-export async function atualizar_usuario(id: number, data: IUpdateUsuario): Promise<IUsuario | null> {
+export async function atualizar_usuario(id: number, data: IUpdateUsuario): Promise<IUsuario> {
 
     try {
 
-        const usuario: IUsuario | null = await prisma.usuario.update({where: {id_usuario: id}, data: data});
+        const usuario: IUsuario = await prisma.usuario.update({where: {id_usuario: id}, data: data});
         return usuario;
         
     } catch (erro: any) {
@@ -57,12 +57,11 @@ export async function atualizar_usuario(id: number, data: IUpdateUsuario): Promi
     };
 };
 
-export async function deletar_usuario(id: number): Promise<IUsuario> {
+export async function deletar_usuario(id: number): Promise<void> {
 
     try {
 
         const usuario: IUsuario = await prisma.usuario.delete({where: {id_usuario: id}});
-        return usuario;
         
     } catch (erro: any) {
       
