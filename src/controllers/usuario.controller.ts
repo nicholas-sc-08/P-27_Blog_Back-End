@@ -2,7 +2,7 @@ import type { IUsuario, ICreateUsuario, IUpdateUsuario, GetParamId } from "../ty
 import { usuario_schema, usuario_update_schema } from "../validations/usuario.validation.js";
 import type { FastifyRequest, FastifyReply } from "fastify";
 import bcrypt from "bcrypt";
-import * as ServicesUsuario from "../services/usuario.services.js";
+import * as ServicesUsuario from "../services/usuario.service.js";
 
 export async function get_usuarios(req: FastifyRequest, reply: FastifyReply) {
 
