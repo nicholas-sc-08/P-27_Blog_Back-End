@@ -21,7 +21,6 @@ export async function get_usuarios(req: FastifyRequest, reply: FastifyReply) {
     } catch (erro: any) {
 
         reply.status(500).send(erro);
-        throw new Error("Erro ao buscar os usuários");
     };
 };
 
@@ -43,11 +42,10 @@ export async function get_usuario(req: FastifyRequest<{ Params: GetParamId }>, r
     } catch (erro: any) {
 
         reply.status(500).send(erro);
-        throw new Error("Erro no controller ao buscar o usuário pelo ID");
     };
 };
 
-export async function post_usuario(req: FastifyRequest, reply: FastifyReply) {
+export async function post_usuario(req: FastifyRequest<{Body: ICreateUsuario}>, reply: FastifyReply) {
 
     try {
 
@@ -56,7 +54,7 @@ export async function post_usuario(req: FastifyRequest, reply: FastifyReply) {
 
         if(validar_usuario){
 
-            const criptografar_senha = bcrypt.hash(data.senha, 10);
+            const criptografar_senha = await bcrypt.hash(data.senha, 10);
             const usuario = {...data, senha: criptografar_senha};
             const resposta = await ServicesUsuario.cadastrar_usuario(usuario);
         }
@@ -64,6 +62,42 @@ export async function post_usuario(req: FastifyRequest, reply: FastifyReply) {
     } catch (erro: any) {
 
         reply.status(500).send(erro);
-        throw new Error("Erro no controller ao cadastrar o usuário");
+    };
+};
+
+export async function put_usuario(req: FastifyRequest<{Params: GetParamId, Body: IUpdateUsuario}>, reply: FastifyReply) {
+
+    try{
+
+        const { id_usuario } = req.params;
+        const data = req.body;
+        const validar_usuario = usuario_update_schema.parse(data);
+
+        if(validar_usuario){
+
+            const usuario: IUsuario = await ServicesUsuario.atualizar_usuario(id_usuario, data);
+            return usuario;
+
+        } else {
+
+            reply.status(401).send("Usuário não está válido para atualizar!");
+        };
+
+    } catch(erro: any){
+
+        reply.status(500).send(erro);
+    };
+};
+
+export async function delete_usuario(req: FastifyRequest<{Params: GetParamId}>, reply: FastifyReply){
+
+    try {
+
+        const { id_usuario } = req.params;
+        await ServicesUsuario.deletar_usuario(id_usuario);
+        
+    } catch (erro: any) {
+      
+        reply.status(500).send(erro);
     };
 };
