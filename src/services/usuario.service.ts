@@ -29,6 +29,20 @@ export async function buscar_usuario(id: number): Promise<IUsuario | null> {
     };
 };
 
+export async function buscar_usuario_email(email: string): Promise<IUsuario | null>{
+
+    try {
+
+            const usuario: IUsuario | null = await prisma.usuario.findUnique({where: {email: email}});
+            return usuario;
+        
+    } catch (erro: any) {
+      
+        console.error(erro);
+        throw new Error("Erro ao buscar o usuário pelo Email");
+    };
+};
+
 export async function cadastrar_usuario(data: ICreateUsuario): Promise<IUsuario> {
 
     try {

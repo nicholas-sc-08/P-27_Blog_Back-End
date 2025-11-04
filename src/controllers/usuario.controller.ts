@@ -51,13 +51,16 @@ export async function post_usuario(req: FastifyRequest<{Body: ICreateUsuario}>, 
 
         const data = req.body;
         const validar_usuario = usuario_schema.parse(data);
+        console.log(validar_usuario);
+        
 
         if(validar_usuario){
 
             const criptografar_senha = await bcrypt.hash(data.senha, 10);
             const usuario = {...data, senha: criptografar_senha};
             const resposta = await ServicesUsuario.cadastrar_usuario(usuario);
-        }
+            reply.status(201).send(resposta);
+        };
 
     } catch (erro: any) {
 
